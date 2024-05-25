@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+         body {
+            background-color: #f2f2f2; /* Set the background color for the page */
+        }
+
+       header {
+            background-color: rgb(36, 28, 127);
+            color: white;
+            font-weight: 500;
+            font-size: 40px; /* Decreased font size for better readability on mobile */
+            text-align: center; /* Center align header text */
+            padding: 20px; /* Increased padding for better spacing */
+        }
+
+        .menu {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Allow items to wrap */
+            padding: 0; /* Remove default padding */
+            margin: 0; /* Remove default margin */
+        }
+
+        ul li {
+            list-style: none;
+            margin: 10px; /* Adjust margin for better spacing */
+            font-size: 24px; /* Decreased font size for better readability on mobile */
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #000000;
+            font-family: Arial;
+            font-weight: bold;
+            transition: 0.4s ease-in-out;
+        }
+
+        ul li a:hover {
+            color: #ff0000;
+        }
+        .active {
+            color: #ff0000; /* Change color of active link */
+        }
+        .para{
+            font-size: 30px;
+            font-weight: bolder;
+        }
+        /* body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        } */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .prediction-tools label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .prediction-tools input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .btn-group {
+            text-align: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <header>
+            Hypertension associated SNPs Database (BPSNPs)
+        </header>
+        <div class="menu">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="About HTN.html">About HTN</a></li>
+                <li><a href="Guidelines for HTN.html">Guidelines for HTN</a></li>
+                <li><a href="kegg.html">KEGG Pathway</a></li>
+                <li><a href="Molecular Mechanism.html">Molecular Mechanism</a></li>
+                <!-- <li><a href="Risk Assessment.html">Risk Assessment</a></li> -->
+                <li><a href="genepage.html">Gene</a></li>
+                <li><a href="Literature.html">Literature</a></li>
+                <li><a href="Contact Us.html">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="input-group">
+              <label for="gene-search"></label>
+              <input type="text" id="gene-search" placeholder="Enter gene name, rsID, or variant...">
+            </div>
+            <div class="prediction-tools">
+              <label><h1>Prediction Tools</h1></label>
+              <label><input type="checkbox" name="prediction-tool" value="SIFT"> SIFT</label>
+              <label><input type="checkbox" name="prediction-tool" value="PANTHER"> PANTHER</label>
+              <label><input type="checkbox" name="prediction-tool" value="POLYPEN-2"> POLYPEN-2</label>
+              <label><input type="checkbox" name="prediction-tool" value="META SNP"> META SNP</label>
+              <label><input type="checkbox" name="prediction-tool" value="SUSPECT"> SUSPECT</label>
+              <label><input type="checkbox" name="prediction-tool" value="PON-P2"> PON-P2</label>
+              <label><input type="checkbox" name="prediction-tool" value="MAPP"> MAPP</label>
+              <label><input type="checkbox" name="prediction-tool" value="PHD-SNP"> PHD-SNP</label>
+              <label><input type="checkbox" name="prediction-tool" value="SNPS&GO"> SNPS&GO</label>
+              <label><input type="checkbox" name="prediction-tool" value="MUTPRED-2"> MUTPRED-2</label>
+              <label><input type="checkbox" name="prediction-tool" value="P-MUT"> P-MUT</label>
+              <label><input type="checkbox" name="prediction-tool" value="PREDICTSNPS"> PREDICTSNPS</label>
+              <label><input type="checkbox" name="prediction-tool" value="SNAP2"> SNAP2</label>
+              <label><input type="checkbox" id="select-all" value="ADD"> ADD (Select All)</label>
+            </div>
+            <div class="btn-group">
+              <button class="btn" onclick="submitForm()">Submit</button>
+              <button class="btn" onclick="closeForm()">Close</button>
+            </div>
+          </div>
+          
+    </div>
+
+<script>
+document.getElementById("select-all").addEventListener("click", function() {
+    var checkboxes = document.querySelectorAll('input[name="prediction-tool"]');
+    if (this.checked) {
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = true;
+        });
+    } else {
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+    }
+});
+
+function submitForm() {
+    // Get the gene search input value
+    var geneName = document.getElementById('gene-search').value;
+
+    // Get all selected checkboxes
+    var checkboxes = document.querySelectorAll('input[name="prediction-tool"]:checked');
+
+    // Initialize risk score
+    var riskScore = 0;
+
+    // Loop through selected checkboxes and calculate risk score
+    checkboxes.forEach(function(checkbox) {
+        switch (checkbox.value) {
+            case 'PANTHER':
+            case 'SIFT':
+            case 'POLYPEN-2':
+            case 'META SNP':
+            case 'SUSPECT':
+            case 'PON-P2':
+            case 'MAPP':
+            case 'PHD-SNP':
+            case 'SNPS&GO':
+            case 'MUTPRED-2':
+            case 'P-MUT':
+            case 'PREDICTSNPS':
+                riskScore += 1;
+                break;
+            // Add more cases for other checkboxes if needed
+            default:
+                break;
+        }
+    });
+
+    // Determine risk level based on risk score
+    var riskLevel;
+    if (riskScore > 12) {
+        riskLevel = "Highest Risk";
+    } else if (riskScore > 10) {
+        riskLevel = "High Risk";
+    } else if (riskScore > 6) {
+        riskLevel = "Moderate Risk";
+    } else if (riskScore >= 4) {
+        riskLevel = "Risk";
+    } else if (riskScore >= 1) {
+        riskLevel = "Less Risk";
+    } else {
+        riskLevel = "No Risk";
+    }
+
+    // Display the result
+    alert("Gene: " + geneName + "\nRisk Level: " + riskLevel);
+}
+
+function closeForm() {
+    // You can add functionality to close the form here
+    alert("Close form button clicked!");
+}
+</script>
+</body>
+</html>
